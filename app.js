@@ -25,7 +25,7 @@ const WIN_CONDITION_KEYS = [
 ];
 
 const IMG_BASE = "https://royaleapi.github.io/cr-api-assets/cards/";
-const STORAGE_KEY = "cr-anti-maker-v1";
+const STORAGE_KEY = "cr-anti-maker-v2";
 
 const state = {
   cards: [],
@@ -71,6 +71,16 @@ function loadSelections() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) state.selections = JSON.parse(raw);
+    else {
+      const oldRaw = localStorage.getItem("cr-anti-maker-v1");
+      if (oldRaw) {
+        const old = JSON.parse(oldRaw);
+        for (const [wc, arr] of Object.entries(old)) {
+          state.selections[wc] = {};
+          for (const k of arr) state.selections[wc][k] = { evo: false, champ: false };
+        }
+      }
+    }
   } catch {}
 }
 
@@ -78,16 +88,30 @@ function saveSelections() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state.selections));
 }
 
+function isChampion(card) {
+  return card && card.rarity === "Champion";
+}
+function hasEvo(card) {
+  return !!(card && card.hasEvo);
+}
+
+function antisOf(wcKey) {
+  return state.selections[wcKey] || {};
+}
+
+function antiKeysOf(wcKey) {
+  return Object.keys(antisOf(wcKey));
+}
+
 function renderWcGrid() {
   els.wcGrid.innerHTML = "";
   for (const card of state.winConds) {
-    const el = cardEl(card);
+    const el = cardEl(card, { showBadges: false });
     if (state.activeWc === card.key) el.classList.add("active");
-    if ((state.selections[card.key] || []).length > 0) {
-      const badge = document.createElement("span");
-      badge.className = "name";
-      badge.textContent = `${card.name} (${state.selections[card.key].length})`;
-      el.replaceChild(badge, el.querySelector(".name"));
+    const count = antiKeysOf(card.key).length;
+    if (count > 0) {
+      const name = el.querySelector(".name");
+      name.textContent = `${card.name} (${count})`;
     }
     el.addEventListener("click", () => selectWc(card.key));
     els.wcGrid.appendChild(el);
@@ -99,22 +123,41 @@ function renderAllGrid() {
   els.allGrid.innerHTML = "";
   if (!state.activeWc) return;
   const q = els.search.value.trim().toLowerCase();
-  const selected = new Set(state.selections[state.activeWc] || []);
+  const sel = antisOf(state.activeWc);
   const list = state.cards.filter((c) =>
     !q ? true : c.name.toLowerCase().includes(q) || c.key.includes(q)
   );
   for (const card of list) {
-    const el = cardEl(card);
-    if (selected.has(card.key)) el.classList.add("selected");
-    el.addEventListener("click", () => toggleAnti(card.key));
+    const el = cardEl(card, { showBadges: true, selectionState: sel[card.key] });
+    if (sel[card.key]) el.classList.add("selected");
+    el.querySelector(".card-img-wrap").addEventListener("click", () =>
+      toggleAnti(card.key)
+    );
+    const evoCb = el.querySelector(".cb-evo");
+    if (evoCb) {
+      evoCb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleVariant(card.key, "evo");
+      });
+    }
+    const champCb = el.querySelector(".cb-champ");
+    if (champCb) {
+      champCb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleVariant(card.key, "champ");
+      });
+    }
     els.allGrid.appendChild(el);
   }
 }
 
-function cardEl(card) {
+function cardEl(card, { showBadges = false, selectionState = null } = {}) {
   const wrap = document.createElement("div");
   wrap.className = "card";
   wrap.dataset.key = card.key;
+
+  const imgWrap = document.createElement("div");
+  imgWrap.className = "card-img-wrap";
   const img = document.createElement("img");
   img.src = IMG_BASE + card.key + ".png";
   img.alt = card.name;
@@ -122,12 +165,37 @@ function cardEl(card) {
   img.onerror = () => {
     img.style.opacity = "0.3";
   };
+  imgWrap.appendChild(img);
+  wrap.appendChild(imgWrap);
+
   const name = document.createElement("div");
   name.className = "name";
   name.textContent = card.name;
-  wrap.appendChild(img);
   wrap.appendChild(name);
+
+  if (showBadges && (hasEvo(card) || isChampion(card))) {
+    const badges = document.createElement("div");
+    badges.className = "badges";
+    if (hasEvo(card)) {
+      badges.appendChild(badgeEl("evo", selectionState?.evo));
+    }
+    if (isChampion(card)) {
+      badges.appendChild(badgeEl("champ", selectionState?.champ));
+    }
+    wrap.appendChild(badges);
+  }
+
   return wrap;
+}
+
+function badgeEl(kind, checked) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "badge cb-" + kind + (checked ? " checked" : "");
+  b.title = kind === "evo" ? "Evrim" : "Kahraman";
+  b.setAttribute("aria-label", b.title);
+  b.setAttribute("aria-pressed", checked ? "true" : "false");
+  return b;
 }
 
 function selectWc(key) {
@@ -143,21 +211,36 @@ function selectWc(key) {
 function toggleAnti(antiKey) {
   if (!state.activeWc) return;
   if (antiKey === state.activeWc) return;
-  const list = state.selections[state.activeWc] || [];
-  const idx = list.indexOf(antiKey);
-  if (idx === -1) list.push(antiKey);
-  else list.splice(idx, 1);
-  if (list.length === 0) delete state.selections[state.activeWc];
-  else state.selections[state.activeWc] = list;
+  const wc = state.activeWc;
+  if (!state.selections[wc]) state.selections[wc] = {};
+  if (state.selections[wc][antiKey]) {
+    delete state.selections[wc][antiKey];
+  } else {
+    state.selections[wc][antiKey] = { evo: false, champ: false };
+  }
+  if (Object.keys(state.selections[wc]).length === 0) delete state.selections[wc];
   saveSelections();
   renderWcGrid();
   renderAllGrid();
   renderSummary();
 }
 
+function toggleVariant(antiKey, kind) {
+  if (!state.activeWc) return;
+  const wc = state.activeWc;
+  if (!state.selections[wc]) state.selections[wc] = {};
+  if (!state.selections[wc][antiKey]) {
+    state.selections[wc][antiKey] = { evo: false, champ: false };
+  }
+  state.selections[wc][antiKey][kind] = !state.selections[wc][antiKey][kind];
+  saveSelections();
+  renderAllGrid();
+  renderSummary();
+}
+
 function renderSummary() {
   const entries = Object.entries(state.selections).filter(
-    ([, v]) => v && v.length > 0
+    ([, v]) => v && Object.keys(v).length > 0
   );
   if (entries.length === 0) {
     els.summaryPanel.hidden = true;
@@ -165,7 +248,7 @@ function renderSummary() {
   }
   els.summaryPanel.hidden = false;
   els.summary.innerHTML = "";
-  for (const [wcKey, antis] of entries) {
+  for (const [wcKey, antiMap] of entries) {
     const wc = state.byKey.get(wcKey);
     if (!wc) continue;
     const row = document.createElement("div");
@@ -175,8 +258,8 @@ function renderSummary() {
     head.textContent = wc.name + " →";
     const body = document.createElement("div");
     body.className = "antis";
-    body.textContent = antis
-      .map((k) => state.byKey.get(k)?.name || k)
+    body.textContent = Object.entries(antiMap)
+      .map(([k, flags]) => labelFor(k, flags))
       .join(", ");
     row.appendChild(head);
     row.appendChild(body);
@@ -185,13 +268,22 @@ function renderSummary() {
   els.output.value = buildOutputText(entries);
 }
 
+function labelFor(key, flags) {
+  const name = state.byKey.get(key)?.name || key;
+  const tags = [];
+  if (flags?.evo) tags.push("Evo");
+  if (flags?.champ) tags.push("Kahraman");
+  return tags.length ? `${name} [${tags.join(" + ")}]` : name;
+}
+
 function buildOutputText(entries) {
   const lines = ["Seeok — Anti listesi", "=".repeat(28), ""];
-  for (const [wcKey, antis] of entries) {
+  for (const [wcKey, antiMap] of entries) {
     const wcName = state.byKey.get(wcKey)?.name || wcKey;
-    const antiNames = antis.map((k) => state.byKey.get(k)?.name || k);
     lines.push(`▸ ${wcName}`);
-    for (const n of antiNames) lines.push(`   - ${n}`);
+    for (const [k, flags] of Object.entries(antiMap)) {
+      lines.push(`   - ${labelFor(k, flags)}`);
+    }
     lines.push("");
   }
   return lines.join("\n").trimEnd();
@@ -199,7 +291,7 @@ function buildOutputText(entries) {
 
 function updateCounter() {
   const n = Object.values(state.selections).filter(
-    (v) => v && v.length > 0
+    (v) => v && Object.keys(v).length > 0
   ).length;
   els.counter.textContent = `${n} win condition seçildi`;
 }

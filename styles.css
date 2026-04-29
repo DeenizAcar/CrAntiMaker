@@ -136,6 +136,60 @@ main {
   line-height: 1.2;
   min-height: 26px;
 }
+.card-img-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.badges {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 4px;
+  min-height: 22px;
+}
+.badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 2px solid;
+  background: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.badge:hover { transform: scale(1.08); }
+.badge.cb-evo {
+  border-color: #d05cff;
+  box-shadow: 0 0 6px rgba(208, 92, 255, 0.6);
+}
+.badge.cb-evo.checked {
+  background: linear-gradient(180deg, #d05cff, #8a2be2);
+  box-shadow: 0 0 10px rgba(208, 92, 255, 0.95);
+}
+.badge.cb-evo.checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #fff;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.badge.cb-champ {
+  border-color: #f5c542;
+  box-shadow: 0 0 6px rgba(245, 197, 66, 0.6);
+}
+.badge.cb-champ.checked {
+  background: linear-gradient(180deg, #ffd966, #c89414);
+  box-shadow: 0 0 10px rgba(245, 197, 66, 0.95);
+}
+.badge.cb-champ.checked::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: #fff;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
 .card.active {
   border-color: var(--accent);
   background: rgba(255, 184, 77, 0.12);
