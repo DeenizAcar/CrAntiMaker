@@ -33,6 +33,7 @@ const state = {
   winConds: [],
   activeWc: null,
   selections: {},
+  wcVariants: {},
 };
 
 const els = {
@@ -70,8 +71,11 @@ async function init() {
 function loadSelections() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) state.selections = JSON.parse(raw);
-    else {
+    if (raw) {
+      const data = JSON.parse(raw);
+      state.selections = data.selections || {};
+      state.wcVariants = data.wcVariants || {};
+    } else {
       const oldRaw = localStorage.getItem("cr-anti-maker-v1");
       if (oldRaw) {
         const old = JSON.parse(oldRaw);
@@ -85,7 +89,10 @@ function loadSelections() {
 }
 
 function saveSelections() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.selections));
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({ selections: state.selections, wcVariants: state.wcVariants })
+  );
 }
 
 function isChampion(card) {
@@ -106,17 +113,50 @@ function antiKeysOf(wcKey) {
 function renderWcGrid() {
   els.wcGrid.innerHTML = "";
   for (const card of state.winConds) {
-    const el = cardEl(card, { showBadges: false });
+    const variants = state.wcVariants[card.key] || { evo: false, champ: false };
+    const el = cardEl(card, { showBadges: true, selectionState: variants });
     if (state.activeWc === card.key) el.classList.add("active");
     const count = antiKeysOf(card.key).length;
     if (count > 0) {
       const name = el.querySelector(".name");
       name.textContent = `${card.name} (${count})`;
     }
-    el.addEventListener("click", () => selectWc(card.key));
+    el.querySelector(".card-img-wrap").addEventListener("click", () =>
+      selectWc(card.key)
+    );
+    el.querySelector(".name").addEventListener("click", () => selectWc(card.key));
+    const evoCb = el.querySelector(".cb-evo");
+    if (evoCb) {
+      evoCb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleWcVariant(card.key, "evo");
+      });
+    }
+    const champCb = el.querySelector(".cb-champ");
+    if (champCb) {
+      champCb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleWcVariant(card.key, "champ");
+      });
+    }
     els.wcGrid.appendChild(el);
   }
   updateCounter();
+}
+
+function toggleWcVariant(wcKey, kind) {
+  if (!state.wcVariants[wcKey]) state.wcVariants[wcKey] = { evo: false, champ: false };
+  const flags = state.wcVariants[wcKey];
+  const next = !flags[kind];
+  flags[kind] = next;
+  if (next) {
+    const other = kind === "evo" ? "champ" : "evo";
+    flags[other] = false;
+  }
+  if (!flags.evo && !flags.champ) delete state.wcVariants[wcKey];
+  saveSelections();
+  renderWcGrid();
+  renderSummary();
 }
 
 function renderAllGrid() {
@@ -263,7 +303,7 @@ function renderSummary() {
     row.className = "summary-row";
     const head = document.createElement("div");
     head.className = "wc";
-    head.textContent = wc.name + " →";
+    head.textContent = labelFor(wcKey, state.wcVariants[wcKey]) + " →";
     const body = document.createElement("div");
     body.className = "antis";
     body.textContent = Object.entries(antiMap)
@@ -287,8 +327,7 @@ function labelFor(key, flags) {
 function buildOutputText(entries) {
   const lines = ["Seeok — Anti listesi", "=".repeat(28), ""];
   for (const [wcKey, antiMap] of entries) {
-    const wcName = state.byKey.get(wcKey)?.name || wcKey;
-    lines.push(`▸ ${wcName}`);
+    lines.push(`▸ ${labelFor(wcKey, state.wcVariants[wcKey])}`);
     for (const [k, flags] of Object.entries(antiMap)) {
       lines.push(`   - ${labelFor(k, flags)}`);
     }
@@ -324,6 +363,7 @@ async function onCopy() {
 function onReset() {
   if (!confirm("Tüm seçimleri silmek istediğine emin misin?")) return;
   state.selections = {};
+  state.wcVariants = {};
   state.activeWc = null;
   saveSelections();
   els.antiPanel.hidden = true;
