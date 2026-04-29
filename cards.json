@@ -147,6 +147,13 @@
     "rarity": "Legendary"
   },
   {
+    "key": "berserker",
+    "name": "Berserker",
+    "elixir": 3,
+    "type": "Troop",
+    "rarity": "Rare"
+  },
+  {
     "key": "cannon",
     "name": "Cannon",
     "elixir": 3,
@@ -198,6 +205,13 @@
   {
     "key": "goblin-barrel",
     "name": "Goblin Barrel",
+    "elixir": 3,
+    "type": "Spell",
+    "rarity": "Epic"
+  },
+  {
+    "key": "goblin-curse",
+    "name": "Goblin Curse",
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic"
@@ -303,6 +317,13 @@
   {
     "key": "tornado",
     "name": "Tornado",
+    "elixir": 3,
+    "type": "Spell",
+    "rarity": "Epic"
+  },
+  {
+    "key": "vines",
+    "name": "Vines",
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic"
@@ -532,6 +553,13 @@
     "rarity": "Champion"
   },
   {
+    "key": "spirit-empress",
+    "name": "Spirit Empress",
+    "elixir": 4,
+    "type": "Troop",
+    "rarity": "Champion"
+  },
+  {
     "key": "tesla",
     "name": "Tesla",
     "elixir": 4,
@@ -660,13 +688,6 @@
   {
     "key": "prince",
     "name": "Prince",
-    "elixir": 5,
-    "type": "Troop",
-    "rarity": "Epic"
-  },
-  {
-    "key": "raging-prince",
-    "name": "Raging Prince",
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic"
