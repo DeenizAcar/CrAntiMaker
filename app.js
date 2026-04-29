@@ -19,7 +19,6 @@ const WIN_CONDITION_KEYS = [
   "goblin-giant",
   "elixir-golem",
   "electro-giant",
-  "mega-knight",
   "three-musketeers",
   "sparky",
 ];
