@@ -462,13 +462,6 @@
     "rarity": "Champion"
   },
   {
-    "key": "super-witch",
-    "name": "Super Witch",
-    "elixir": 6,
-    "type": "Troop",
-    "rarity": "Legendary"
-  },
-  {
     "key": "elixir-golem",
     "name": "Elixir Golem",
     "elixir": 3,
@@ -488,20 +481,6 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion"
-  },
-  {
-    "key": "super-lava-hound",
-    "name": "Super Lava Hound",
-    "elixir": 8,
-    "type": "Troop",
-    "rarity": "Legendary"
-  },
-  {
-    "key": "super-magic-archer",
-    "name": "Super Magic Archer",
-    "elixir": 5,
-    "type": "Troop",
-    "rarity": "Legendary"
   },
   {
     "key": "archer-queen",
@@ -525,25 +504,11 @@
     "rarity": "Champion"
   },
   {
-    "key": "super-ice-golem",
-    "name": "Super Ice Golem",
-    "elixir": 4,
-    "type": "Troop",
-    "rarity": "Legendary"
-  },
-  {
     "key": "monk",
     "name": "Monk",
     "elixir": 5,
     "type": "Troop",
     "rarity": "Champion"
-  },
-  {
-    "key": "super-archers",
-    "name": "Super Archers",
-    "elixir": 3,
-    "type": "Troop",
-    "rarity": "Legendary"
   },
   {
     "key": "skeleton-dragons",
@@ -558,13 +523,6 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion"
-  },
-  {
-    "key": "super-mini-pekka",
-    "name": "Super Mini P.E.K.K.A",
-    "elixir": 5,
-    "type": "Troop",
-    "rarity": "Legendary"
   },
   {
     "key": "mother-witch",
