@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -m 15 \"https://royaleapi.github.io/cr-api-data/json/cards.json\" -o c:/GitHub/CrAntiMaker/cards-raw.json)",
+      "Bash(curl -s -m 10 \"https://royaleapi.github.io/cdn/images/cards/knight.png\" -o /tmp/test-knight.png)",
+      "Read(//tmp/**)",
+      "Bash(curl -sI -m 10 \"https://cdn.royaleapi.com/static/img/cards-150/knight.png\")",
+      "Bash(curl -sI -m 10 \"https://royaleapi.github.io/cr-api-assets/cards/knight.png\")",
+      "Bash(node -e \"const c=require\\('c:/GitHub/CrAntiMaker/cards-raw.json'\\); console.log\\('total:', c.length\\); console.log\\('non-evolved:', c.filter\\(x=>!x.is_evolved\\).length\\); console.log\\('keys sample:', c.filter\\(x=>!x.is_evolved\\).map\\(x=>x.key\\).slice\\(0,10\\).join\\(','\\)\\);\")",
+      "Bash(node -e \"const c=require\\('c:/GitHub/CrAntiMaker/cards-raw.json'\\); const wc=['hog-rider','giant','royal-giant','golem','goblin-giant','elixir-golem','x-bow','mortar','graveyard','miner','goblin-barrel','goblin-drill','balloon','lava-hound','wall-breakers','ram-rider','battle-ram','three-musketeers','skeleton-barrel','royal-hogs','sparky','mega-knight','electro-giant']; const found=wc.filter\\(k=>c.find\\(x=>x.key===k\\)\\); const missing=wc.filter\\(k=>!c.find\\(x=>x.key===k\\)\\); console.log\\('found:',found.length,found.join\\(','\\)\\); console.log\\('missing:',missing.join\\(','\\)\\);\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/hog-rider.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/x-bow.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/three-musketeers.png\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"index.html %{http_code}\\\\n\" http://127.0.0.1:8765/index.html)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"styles.css %{http_code}\\\\n\" http://127.0.0.1:8765/styles.css)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"app.js %{http_code}\\\\n\" http://127.0.0.1:8765/app.js)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"cards.json %{http_code}\\\\n\" http://127.0.0.1:8765/cards.json)",
+      "Bash(curl -s -m 5 http://127.0.0.1:8765/cards.json)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\('cards loaded:',j.length\\); console.log\\('hog-rider exists:', !!j.find\\(x=>x.key==='hog-rider'\\)\\);}\\)\")",
+      "Bash(node c:/GitHub/CrAntiMaker/_serve.js)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"index %{http_code}\\\\n\" http://127.0.0.1:8765/)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"css %{http_code}\\\\n\" http://127.0.0.1:8765/styles.css)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"js %{http_code}\\\\n\" http://127.0.0.1:8765/app.js)",
+      "Bash(curl -s -m 5 -o /dev/null -w \"json %{http_code}\\\\n\" http://127.0.0.1:8765/cards.json)",
+      "Bash(curl -s -m 5 http://127.0.0.1:8765/cards.json -o c:/GitHub/CrAntiMaker/_test.json)",
+      "Bash(pkill -f \"_serve.js\")"
+    ]
+  }
+}
