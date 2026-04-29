@@ -5,7 +5,8 @@
     "elixir": 1,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "fire-spirit",
@@ -13,7 +14,8 @@
     "elixir": 1,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "heal-spirit",
@@ -21,7 +23,8 @@
     "elixir": 1,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "ice-spirit",
@@ -29,7 +32,8 @@
     "elixir": 1,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "mirror",
@@ -37,7 +41,8 @@
     "elixir": 1,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "skeletons",
@@ -45,7 +50,8 @@
     "elixir": 1,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "barbarian-barrel",
@@ -53,7 +59,8 @@
     "elixir": 2,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "bats",
@@ -61,7 +68,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "bomber",
@@ -69,7 +77,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "giant-snowball",
@@ -77,7 +86,8 @@
     "elixir": 2,
     "type": "Spell",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "goblins",
@@ -85,7 +95,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "ice-golem",
@@ -93,7 +104,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "rage",
@@ -101,7 +113,8 @@
     "elixir": 2,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "spear-goblins",
@@ -109,7 +122,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "suspicious-bush",
@@ -117,7 +131,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "the-log",
@@ -125,7 +140,8 @@
     "elixir": 2,
     "type": "Spell",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "wall-breakers",
@@ -133,7 +149,8 @@
     "elixir": 2,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "zap",
@@ -141,7 +158,8 @@
     "elixir": 2,
     "type": "Spell",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "archers",
@@ -149,7 +167,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "arrows",
@@ -157,7 +176,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "bandit",
@@ -165,7 +185,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "berserker",
@@ -173,7 +194,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "cannon",
@@ -181,7 +203,8 @@
     "elixir": 3,
     "type": "Building",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "clone",
@@ -189,7 +212,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "dart-goblin",
@@ -197,7 +221,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "earthquake",
@@ -205,7 +230,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "elixir-golem",
@@ -213,7 +239,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "firecracker",
@@ -221,7 +248,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "fisherman",
@@ -229,7 +257,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblin-barrel",
@@ -237,7 +266,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "goblin-curse",
@@ -245,7 +275,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblin-gang",
@@ -253,7 +284,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "guards",
@@ -261,7 +293,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "ice-wizard",
@@ -269,7 +302,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "knight",
@@ -277,7 +311,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": true
   },
   {
     "key": "little-prince",
@@ -285,7 +320,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "mega-minion",
@@ -293,7 +329,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "miner",
@@ -301,7 +338,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "minions",
@@ -309,7 +347,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "princess",
@@ -317,7 +356,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "royal-delivery",
@@ -325,7 +365,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "royal-ghost",
@@ -333,7 +374,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "skeleton-army",
@@ -341,7 +383,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "skeleton-barrel",
@@ -349,7 +392,8 @@
     "elixir": 3,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "tombstone",
@@ -357,7 +401,8 @@
     "elixir": 3,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "tornado",
@@ -365,7 +410,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "vines",
@@ -373,7 +419,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "void",
@@ -381,7 +428,8 @@
     "elixir": 3,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "baby-dragon",
@@ -389,7 +437,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "battle-healer",
@@ -397,7 +446,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "battle-ram",
@@ -405,7 +455,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "bomb-tower",
@@ -413,7 +464,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "boss-bandit",
@@ -421,7 +473,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "dark-prince",
@@ -429,7 +482,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "electro-wizard",
@@ -437,7 +491,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "fireball",
@@ -445,7 +500,8 @@
     "elixir": 4,
     "type": "Spell",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "flying-machine",
@@ -453,7 +509,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "freeze",
@@ -461,7 +518,8 @@
     "elixir": 4,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "furnace",
@@ -469,7 +527,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "goblin-cage",
@@ -477,7 +536,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "goblin-demolisher",
@@ -485,7 +545,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblin-drill",
@@ -493,7 +554,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "golden-knight",
@@ -501,7 +563,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "hog-rider",
@@ -509,7 +572,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "hunter",
@@ -517,7 +581,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "inferno-dragon",
@@ -525,7 +590,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "lumberjack",
@@ -533,7 +599,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "magic-archer",
@@ -541,7 +608,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "mighty-miner",
@@ -549,7 +617,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "mini-pekka",
@@ -557,7 +626,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "mortar",
@@ -565,7 +635,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "mother-witch",
@@ -573,7 +644,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "musketeer",
@@ -581,7 +653,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": true
   },
   {
     "key": "night-witch",
@@ -589,7 +662,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "phoenix",
@@ -597,7 +671,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "poison",
@@ -605,7 +680,8 @@
     "elixir": 4,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "rune-giant",
@@ -613,7 +689,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "skeleton-dragons",
@@ -621,7 +698,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "skeleton-king",
@@ -629,7 +707,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "spirit-empress",
@@ -637,7 +716,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "tesla",
@@ -645,7 +725,8 @@
     "elixir": 4,
     "type": "Building",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "valkyrie",
@@ -653,7 +734,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "zappies",
@@ -661,7 +743,8 @@
     "elixir": 4,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "archer-queen",
@@ -669,7 +752,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "balloon",
@@ -677,7 +761,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "barbarians",
@@ -685,7 +770,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "bowler",
@@ -693,7 +779,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "cannon-cart",
@@ -701,7 +788,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "electro-dragon",
@@ -709,7 +797,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "executioner",
@@ -717,7 +806,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "giant",
@@ -725,7 +815,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": true
   },
   {
     "key": "goblin-hut",
@@ -733,7 +824,8 @@
     "elixir": 5,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblin-machine",
@@ -741,7 +833,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblinstein",
@@ -749,7 +842,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "graveyard",
@@ -757,7 +851,8 @@
     "elixir": 5,
     "type": "Spell",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "inferno-tower",
@@ -765,7 +860,8 @@
     "elixir": 5,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "minion-horde",
@@ -773,7 +869,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "monk",
@@ -781,7 +878,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Champion",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "prince",
@@ -789,7 +887,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "ram-rider",
@@ -797,7 +896,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "rascals",
@@ -805,7 +905,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "royal-hogs",
@@ -813,7 +914,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "witch",
@@ -821,7 +923,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "wizard",
@@ -829,7 +932,8 @@
     "elixir": 5,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": true
   },
   {
     "key": "barbarian-hut",
@@ -837,7 +941,8 @@
     "elixir": 6,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "elite-barbarians",
@@ -845,7 +950,8 @@
     "elixir": 6,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "elixir-collector",
@@ -853,7 +959,8 @@
     "elixir": 6,
     "type": "Building",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "giant-skeleton",
@@ -861,7 +968,8 @@
     "elixir": 6,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "goblin-giant",
@@ -869,7 +977,8 @@
     "elixir": 6,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "lightning",
@@ -877,7 +986,8 @@
     "elixir": 6,
     "type": "Spell",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "rocket",
@@ -885,7 +995,8 @@
     "elixir": 6,
     "type": "Spell",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "royal-giant",
@@ -893,7 +1004,8 @@
     "elixir": 6,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "sparky",
@@ -901,7 +1013,8 @@
     "elixir": 6,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "x-bow",
@@ -909,7 +1022,8 @@
     "elixir": 6,
     "type": "Building",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "electro-giant",
@@ -917,7 +1031,8 @@
     "elixir": 7,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "lava-hound",
@@ -925,7 +1040,8 @@
     "elixir": 7,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "mega-knight",
@@ -933,7 +1049,8 @@
     "elixir": 7,
     "type": "Troop",
     "rarity": "Legendary",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "pekka",
@@ -941,7 +1058,8 @@
     "elixir": 7,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": true
+    "hasEvo": true,
+    "hasChamp": false
   },
   {
     "key": "royal-recruits",
@@ -949,7 +1067,8 @@
     "elixir": 7,
     "type": "Troop",
     "rarity": "Common",
-    "hasEvo": true
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "golem",
@@ -957,7 +1076,8 @@
     "elixir": 8,
     "type": "Troop",
     "rarity": "Epic",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   },
   {
     "key": "three-musketeers",
@@ -965,6 +1085,7 @@
     "elixir": 9,
     "type": "Troop",
     "rarity": "Rare",
-    "hasEvo": false
+    "hasEvo": false,
+    "hasChamp": false
   }
 ]

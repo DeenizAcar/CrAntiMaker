@@ -89,7 +89,7 @@ function saveSelections() {
 }
 
 function isChampion(card) {
-  return card && card.rarity === "Champion";
+  return !!(card && card.hasChamp);
 }
 function hasEvo(card) {
   return !!(card && card.hasEvo);
