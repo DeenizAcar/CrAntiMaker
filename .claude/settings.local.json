@@ -24,7 +24,16 @@
       "Bash(curl -s -m 5 -o /dev/null -w \"js %{http_code}\\\\n\" http://127.0.0.1:8765/app.js)",
       "Bash(curl -s -m 5 -o /dev/null -w \"json %{http_code}\\\\n\" http://127.0.0.1:8765/cards.json)",
       "Bash(curl -s -m 5 http://127.0.0.1:8765/cards.json -o c:/GitHub/CrAntiMaker/_test.json)",
-      "Bash(pkill -f \"_serve.js\")"
+      "Bash(pkill -f \"_serve.js\")",
+      "Bash(curl -s -m 15 \"https://royaleapi.github.io/cr-api-data/json/cards.json\" -o c:/GitHub/CrAntiMaker/_fresh.json)",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/goblinstein.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/little-prince.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/void.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/goblin-demolisher.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/boss-bandit.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/suspicious-bush.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/rune-giant.png\")",
+      "Bash(curl -sI -m 8 \"https://royaleapi.github.io/cr-api-assets/cards/goblin-machine.png\")"
     ]
   }
 }
