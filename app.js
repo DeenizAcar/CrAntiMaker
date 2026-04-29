@@ -163,7 +163,9 @@ function cardEl(card, { showBadges = false, selectionState = null } = {}) {
   img.alt = card.name;
   img.loading = "lazy";
   img.onerror = () => {
-    img.style.opacity = "0.3";
+    imgWrap.classList.add("img-fallback");
+    imgWrap.dataset.fallback = card.name;
+    img.remove();
   };
   imgWrap.appendChild(img);
   wrap.appendChild(imgWrap);
@@ -232,7 +234,13 @@ function toggleVariant(antiKey, kind) {
   if (!state.selections[wc][antiKey]) {
     state.selections[wc][antiKey] = { evo: false, champ: false };
   }
-  state.selections[wc][antiKey][kind] = !state.selections[wc][antiKey][kind];
+  const flags = state.selections[wc][antiKey];
+  const next = !flags[kind];
+  flags[kind] = next;
+  if (next) {
+    const other = kind === "evo" ? "champ" : "evo";
+    flags[other] = false;
+  }
   saveSelections();
   renderAllGrid();
   renderSummary();

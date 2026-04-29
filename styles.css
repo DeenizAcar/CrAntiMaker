@@ -140,6 +140,26 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 80px;
+}
+.card-img-wrap.img-fallback {
+  background: linear-gradient(135deg, #2a3148 0%, #1a2030 100%);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 4px;
+  min-height: 80px;
+  width: 80px;
+  margin: 0 auto;
+}
+.card-img-wrap.img-fallback::before {
+  content: attr(data-fallback);
+  display: block;
+  font-weight: 600;
+  color: var(--text);
 }
 .badges {
   display: flex;

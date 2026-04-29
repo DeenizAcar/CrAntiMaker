@@ -351,6 +351,15 @@
     "hasChamp": false
   },
   {
+    "key": "mole",
+    "name": "Mole",
+    "elixir": 3,
+    "type": "Troop",
+    "rarity": "Epic",
+    "hasEvo": true,
+    "hasChamp": false
+  },
+  {
     "key": "princess",
     "name": "Princess",
     "elixir": 3,
