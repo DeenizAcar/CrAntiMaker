@@ -36,15 +36,19 @@
         <input type="text" id="ed-note" placeholder="örn: yan kartlara bağlı, sayaç değişir…" maxlength="120" />
       </label>
       <div class="ed-row">
-        <span class="ed-label">Koşul</span>
-        <div class="ed-cond">
-          <div class="ed-mode" role="tablist">
-            <button type="button" class="ed-mode-btn active" data-mode="absent">Yoksa</button>
-            <button type="button" class="ed-mode-btn" data-mode="present">Varsa</button>
-          </div>
-          <div class="ed-chips" id="ed-chips"></div>
-          <input type="search" id="ed-cond-search" placeholder="Koşul kartı ekle…" autocomplete="off" />
-          <div class="ed-suggest" id="ed-suggest" hidden></div>
+        <span class="ed-label">Rakipte yoksa</span>
+        <div class="ed-cond" data-mode="absent">
+          <div class="ed-chips" id="ed-chips-absent"></div>
+          <input type="search" class="ed-cond-search" data-mode="absent" placeholder="Kart ekle…" autocomplete="off" />
+          <div class="ed-suggest" data-mode="absent" hidden></div>
+        </div>
+      </div>
+      <div class="ed-row">
+        <span class="ed-label">Rakipte varsa</span>
+        <div class="ed-cond" data-mode="present">
+          <div class="ed-chips" id="ed-chips-present"></div>
+          <input type="search" class="ed-cond-search" data-mode="present" placeholder="Kart ekle…" autocomplete="off" />
+          <div class="ed-suggest" data-mode="present" hidden></div>
         </div>
       </div>
     </div>

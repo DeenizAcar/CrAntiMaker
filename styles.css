@@ -399,7 +399,7 @@ button.copied {
 .ed-label {
   font-size: 12px;
   color: var(--muted);
-  width: 50px;
+  width: 96px;
   padding-top: 8px;
   flex-shrink: 0;
 }
@@ -462,7 +462,7 @@ button.copied {
   line-height: 1;
 }
 .ed-chip .x:hover { color: var(--accent-2); }
-#ed-cond-search {
+.ed-cond-search {
   padding: 8px 10px;
   background: var(--panel);
   color: var(--text);
@@ -471,7 +471,7 @@ button.copied {
   font-size: 13px;
   outline: none;
 }
-#ed-cond-search:focus { border-color: var(--accent); }
+.ed-cond-search:focus { border-color: var(--accent); }
 .ed-suggest {
   position: absolute;
   left: 0;
