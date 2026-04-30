@@ -1,27 +1,14 @@
-const WIN_CONDITION_KEYS = [
-  "hog-rider",
-  "royal-hogs",
-  "ram-rider",
-  "battle-ram",
-  "wall-breakers",
-  "miner",
-  "goblin-barrel",
-  "goblin-drill",
-  "graveyard",
-  "balloon",
-  "lava-hound",
-  "skeleton-barrel",
-  "x-bow",
-  "mortar",
-  "giant",
-  "royal-giant",
-  "golem",
-  "goblin-giant",
-  "elixir-golem",
-  "electro-giant",
-  "three-musketeers",
-  "sparky",
-];
+const RARITY_ORDER = { Common: 0, Rare: 1, Epic: 2, Legendary: 3, Champion: 4 };
+
+function sortCards(cards) {
+  return [...cards].sort((a, b) => {
+    const ra = RARITY_ORDER[a.rarity] ?? 99;
+    const rb = RARITY_ORDER[b.rarity] ?? 99;
+    if (ra !== rb) return ra - rb;
+    if (a.elixir !== b.elixir) return a.elixir - b.elixir;
+    return a.name.localeCompare(b.name);
+  });
+}
 
 const IMG_BASE = "https://royaleapi.github.io/cr-api-assets/cards/";
 const STORAGE_KEY = "cr-anti-maker-v4";
@@ -61,11 +48,9 @@ const els = {
 
 async function init() {
   const res = await fetch("cards.json");
-  state.cards = await res.json();
+  state.cards = sortCards(await res.json());
   state.byKey = new Map(state.cards.map((c) => [c.key, c]));
-  state.winConds = WIN_CONDITION_KEYS
-    .map((k) => state.byKey.get(k))
-    .filter(Boolean);
+  state.winConds = state.cards;
 
   loadSelections();
   renderWcGrid();
@@ -676,7 +661,7 @@ function updateCounter() {
   const n = Object.values(state.selections).filter(
     (v) => v && Object.keys(v).length > 0
   ).length;
-  els.counter.textContent = `${n} win condition seçildi`;
+  els.counter.textContent = `${n} kart için anti seçildi`;
 }
 
 async function onCopy() {
