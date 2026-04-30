@@ -24,7 +24,8 @@ const WIN_CONDITION_KEYS = [
 ];
 
 const IMG_BASE = "https://royaleapi.github.io/cr-api-assets/cards/";
-const STORAGE_KEY = "cr-anti-maker-v2";
+const STORAGE_KEY = "cr-anti-maker-v3";
+const PREV_STORAGE_KEYS = ["cr-anti-maker-v2", "cr-anti-maker-v1"];
 
 const state = {
   cards: [],
@@ -33,6 +34,7 @@ const state = {
   activeWc: null,
   selections: {},
   wcVariants: {},
+  editing: null, // anti key being edited
 };
 
 const els = {
@@ -47,6 +49,14 @@ const els = {
   copyBtn: document.getElementById("copy-btn"),
   resetBtn: document.getElementById("reset-btn"),
   counter: document.getElementById("counter"),
+  editDrawer: document.getElementById("edit-drawer"),
+  edCardName: document.getElementById("ed-card-name"),
+  edClose: document.getElementById("ed-close"),
+  edNote: document.getElementById("ed-note"),
+  edChips: document.getElementById("ed-chips"),
+  edCondSearch: document.getElementById("ed-cond-search"),
+  edSuggest: document.getElementById("ed-suggest"),
+  edModeBtns: document.querySelectorAll(".ed-mode-btn"),
 };
 
 async function init() {
@@ -65,6 +75,32 @@ async function init() {
   els.search.addEventListener("input", renderAllGrid);
   els.copyBtn.addEventListener("click", onCopy);
   els.resetBtn.addEventListener("click", onReset);
+
+  els.edClose.addEventListener("click", closeEditor);
+  els.edNote.addEventListener("input", () => {
+    const sel = currentEditingFlags();
+    if (!sel) return;
+    sel.note = els.edNote.value;
+    saveSelections();
+    renderAllGrid();
+    renderSummary();
+  });
+  els.edModeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const mode = btn.dataset.mode;
+      const sel = currentEditingFlags();
+      if (!sel) return;
+      sel.condMode = mode;
+      saveSelections();
+      renderEditorMode();
+      renderSummary();
+    });
+  });
+  els.edCondSearch.addEventListener("input", renderSuggestions);
+  els.edCondSearch.addEventListener("focus", renderSuggestions);
+  els.edCondSearch.addEventListener("blur", () => {
+    setTimeout(() => (els.edSuggest.hidden = true), 150);
+  });
 }
 
 function loadSelections() {
@@ -74,13 +110,42 @@ function loadSelections() {
       const data = JSON.parse(raw);
       state.selections = data.selections || {};
       state.wcVariants = data.wcVariants || {};
-    } else {
-      const oldRaw = localStorage.getItem("cr-anti-maker-v1");
-      if (oldRaw) {
-        const old = JSON.parse(oldRaw);
-        for (const [wc, arr] of Object.entries(old)) {
-          state.selections[wc] = {};
-          for (const k of arr) state.selections[wc][k] = { evo: false, champ: false };
+      return;
+    }
+    // migrate from v2
+    const v2 = localStorage.getItem("cr-anti-maker-v2");
+    if (v2) {
+      const data = JSON.parse(v2);
+      const sels = data.selections || {};
+      for (const [wc, antis] of Object.entries(sels)) {
+        state.selections[wc] = {};
+        for (const [k, flags] of Object.entries(antis)) {
+          state.selections[wc][k] = {
+            evo: !!flags.evo,
+            champ: !!flags.champ,
+            note: "",
+            condMode: "absent",
+            condCards: [],
+          };
+        }
+      }
+      state.wcVariants = data.wcVariants || {};
+      return;
+    }
+    // migrate from v1
+    const v1 = localStorage.getItem("cr-anti-maker-v1");
+    if (v1) {
+      const old = JSON.parse(v1);
+      for (const [wc, arr] of Object.entries(old)) {
+        state.selections[wc] = {};
+        for (const k of arr) {
+          state.selections[wc][k] = {
+            evo: false,
+            champ: false,
+            note: "",
+            condMode: "absent",
+            condCards: [],
+          };
         }
       }
     }
@@ -104,9 +169,22 @@ function hasEvo(card) {
 function antisOf(wcKey) {
   return state.selections[wcKey] || {};
 }
-
 function antiKeysOf(wcKey) {
   return Object.keys(antisOf(wcKey));
+}
+
+function defaultAntiState() {
+  return { evo: false, champ: false, note: "", condMode: "absent", condCards: [] };
+}
+
+function hasMeta(flags) {
+  if (!flags) return false;
+  return (flags.note && flags.note.trim().length > 0) || (flags.condCards && flags.condCards.length > 0);
+}
+
+function currentEditingFlags() {
+  if (!state.editing || !state.activeWc) return null;
+  return state.selections[state.activeWc]?.[state.editing] || null;
 }
 
 function renderWcGrid() {
@@ -167,8 +245,13 @@ function renderAllGrid() {
     !q ? true : c.name.toLowerCase().includes(q) || c.key.includes(q)
   );
   for (const card of list) {
-    const el = cardEl(card, { showBadges: true, selectionState: sel[card.key] });
-    if (sel[card.key]) el.classList.add("selected");
+    const isSelected = !!sel[card.key];
+    const el = cardEl(card, {
+      showBadges: true,
+      selectionState: sel[card.key],
+      showEditIcon: isSelected,
+    });
+    if (isSelected) el.classList.add("selected");
     el.querySelector(".card-img-wrap").addEventListener("click", () =>
       toggleAnti(card.key)
     );
@@ -186,14 +269,31 @@ function renderAllGrid() {
         toggleVariant(card.key, "champ");
       });
     }
+    const editIcon = el.querySelector(".edit-icon");
+    if (editIcon) {
+      editIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openEditor(card.key);
+      });
+    }
     els.allGrid.appendChild(el);
   }
 }
 
-function cardEl(card, { showBadges = false, selectionState = null } = {}) {
+function cardEl(card, { showBadges = false, selectionState = null, showEditIcon = false } = {}) {
   const wrap = document.createElement("div");
   wrap.className = "card";
   wrap.dataset.key = card.key;
+
+  if (showEditIcon) {
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "edit-icon";
+    editBtn.textContent = "✎";
+    editBtn.title = "Not / koşul ekle";
+    if (hasMeta(selectionState)) editBtn.classList.add("has-meta");
+    wrap.appendChild(editBtn);
+  }
 
   const imgWrap = document.createElement("div");
   imgWrap.className = "card-img-wrap";
@@ -241,7 +341,9 @@ function badgeEl(kind, checked) {
 
 function selectWc(key) {
   state.activeWc = key;
+  state.editing = null;
   els.antiPanel.hidden = false;
+  els.editDrawer.hidden = true;
   els.antiTitle.textContent = state.byKey.get(key).name;
   els.search.value = "";
   renderWcGrid();
@@ -256,8 +358,9 @@ function toggleAnti(antiKey) {
   if (!state.selections[wc]) state.selections[wc] = {};
   if (state.selections[wc][antiKey]) {
     delete state.selections[wc][antiKey];
+    if (state.editing === antiKey) closeEditor();
   } else {
-    state.selections[wc][antiKey] = { evo: false, champ: false };
+    state.selections[wc][antiKey] = defaultAntiState();
   }
   if (Object.keys(state.selections[wc]).length === 0) delete state.selections[wc];
   saveSelections();
@@ -271,7 +374,7 @@ function toggleVariant(antiKey, kind) {
   const wc = state.activeWc;
   if (!state.selections[wc]) state.selections[wc] = {};
   if (!state.selections[wc][antiKey]) {
-    state.selections[wc][antiKey] = { evo: false, champ: false };
+    state.selections[wc][antiKey] = defaultAntiState();
   }
   const flags = state.selections[wc][antiKey];
   const next = !flags[kind];
@@ -281,6 +384,113 @@ function toggleVariant(antiKey, kind) {
     flags[other] = false;
   }
   saveSelections();
+  renderAllGrid();
+  renderSummary();
+}
+
+function openEditor(antiKey) {
+  if (!state.activeWc) return;
+  if (!state.selections[state.activeWc]?.[antiKey]) return;
+  state.editing = antiKey;
+  const flags = state.selections[state.activeWc][antiKey];
+  // backfill missing fields for old data
+  if (flags.note === undefined) flags.note = "";
+  if (flags.condMode === undefined) flags.condMode = "absent";
+  if (flags.condCards === undefined) flags.condCards = [];
+
+  els.edCardName.textContent = state.byKey.get(antiKey)?.name || antiKey;
+  els.edNote.value = flags.note;
+  els.edCondSearch.value = "";
+  els.edSuggest.hidden = true;
+  renderEditorMode();
+  renderChips();
+  els.editDrawer.hidden = false;
+  els.editDrawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  els.edNote.focus();
+}
+
+function closeEditor() {
+  state.editing = null;
+  els.editDrawer.hidden = true;
+  renderAllGrid();
+}
+
+function renderEditorMode() {
+  const flags = currentEditingFlags();
+  const mode = flags?.condMode || "absent";
+  els.edModeBtns.forEach((b) => {
+    b.classList.toggle("active", b.dataset.mode === mode);
+  });
+}
+
+function renderChips() {
+  const flags = currentEditingFlags();
+  els.edChips.innerHTML = "";
+  if (!flags) return;
+  for (const k of flags.condCards) {
+    const chip = document.createElement("span");
+    chip.className = "ed-chip";
+    const name = document.createElement("span");
+    name.textContent = state.byKey.get(k)?.name || k;
+    const x = document.createElement("span");
+    x.className = "x";
+    x.textContent = "×";
+    x.addEventListener("click", () => removeCondCard(k));
+    chip.appendChild(name);
+    chip.appendChild(x);
+    els.edChips.appendChild(chip);
+  }
+}
+
+function renderSuggestions() {
+  const flags = currentEditingFlags();
+  if (!flags) return;
+  const q = els.edCondSearch.value.trim().toLowerCase();
+  if (!q) {
+    els.edSuggest.hidden = true;
+    return;
+  }
+  const taken = new Set(flags.condCards);
+  const matches = state.cards
+    .filter((c) => !taken.has(c.key) && c.key !== state.editing)
+    .filter((c) => c.name.toLowerCase().includes(q) || c.key.includes(q))
+    .slice(0, 8);
+  els.edSuggest.innerHTML = "";
+  if (matches.length === 0) {
+    els.edSuggest.hidden = true;
+    return;
+  }
+  for (const c of matches) {
+    const item = document.createElement("div");
+    item.className = "ed-suggest-item";
+    item.textContent = c.name;
+    item.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      addCondCard(c.key);
+    });
+    els.edSuggest.appendChild(item);
+  }
+  els.edSuggest.hidden = false;
+}
+
+function addCondCard(key) {
+  const flags = currentEditingFlags();
+  if (!flags) return;
+  if (!flags.condCards.includes(key)) flags.condCards.push(key);
+  els.edCondSearch.value = "";
+  els.edSuggest.hidden = true;
+  saveSelections();
+  renderChips();
+  renderAllGrid();
+  renderSummary();
+}
+
+function removeCondCard(key) {
+  const flags = currentEditingFlags();
+  if (!flags) return;
+  flags.condCards = flags.condCards.filter((k) => k !== key);
+  saveSelections();
+  renderChips();
   renderAllGrid();
   renderSummary();
 }
@@ -305,14 +515,36 @@ function renderSummary() {
     head.textContent = labelFor(wcKey, state.wcVariants[wcKey]) + " →";
     const body = document.createElement("div");
     body.className = "antis";
-    body.textContent = Object.entries(antiMap)
-      .map(([k, flags]) => labelFor(k, flags))
+    body.innerHTML = Object.entries(antiMap)
+      .map(([k, flags]) => {
+        const txt = labelFor(k, flags);
+        const cond = condText(flags);
+        const note = (flags.note || "").trim();
+        const extra = [cond, note].filter(Boolean).join(" • ");
+        return extra
+          ? `${escapeHtml(txt)} <em>(${escapeHtml(extra)})</em>`
+          : escapeHtml(txt);
+      })
       .join(", ");
     row.appendChild(head);
     row.appendChild(body);
     els.summary.appendChild(row);
   }
   els.output.value = buildOutputText(entries);
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function condText(flags) {
+  if (!flags || !flags.condCards || flags.condCards.length === 0) return "";
+  const names = flags.condCards.map((k) => state.byKey.get(k)?.name || k);
+  const prefix = flags.condMode === "present" ? "varsa" : "yoksa";
+  return `${prefix}: ${names.join(", ")}`;
 }
 
 function labelFor(key, flags) {
@@ -328,7 +560,12 @@ function buildOutputText(entries) {
   for (const [wcKey, antiMap] of entries) {
     lines.push(`▸ ${labelFor(wcKey, state.wcVariants[wcKey])}`);
     for (const [k, flags] of Object.entries(antiMap)) {
-      lines.push(`   - ${labelFor(k, flags)}`);
+      let line = `   - ${labelFor(k, flags)}`;
+      const cond = condText(flags);
+      const note = (flags.note || "").trim();
+      const extra = [cond, note].filter(Boolean).join(" • ");
+      if (extra) line += ` (${extra})`;
+      lines.push(line);
     }
     lines.push("");
   }
@@ -364,8 +601,10 @@ function onReset() {
   state.selections = {};
   state.wcVariants = {};
   state.activeWc = null;
+  state.editing = null;
   saveSelections();
   els.antiPanel.hidden = true;
+  els.editDrawer.hidden = true;
   renderWcGrid();
   renderSummary();
 }

@@ -25,6 +25,29 @@
     <p class="hint">Birden fazla seçebilirsin. Tekrar tıklayarak kaldırabilirsin.</p>
     <input type="search" id="search" placeholder="Kart ara…" autocomplete="off" />
     <div class="grid grid-sm" id="all-grid"></div>
+
+    <div class="edit-drawer" id="edit-drawer" hidden>
+      <div class="ed-header">
+        <span class="ed-title">Düzenleniyor: <strong id="ed-card-name">—</strong></span>
+        <button class="ed-close" id="ed-close" type="button" aria-label="Kapat">×</button>
+      </div>
+      <label class="ed-row">
+        <span class="ed-label">Not</span>
+        <input type="text" id="ed-note" placeholder="örn: yan kartlara bağlı, sayaç değişir…" maxlength="120" />
+      </label>
+      <div class="ed-row">
+        <span class="ed-label">Koşul</span>
+        <div class="ed-cond">
+          <div class="ed-mode" role="tablist">
+            <button type="button" class="ed-mode-btn active" data-mode="absent">Yoksa</button>
+            <button type="button" class="ed-mode-btn" data-mode="present">Varsa</button>
+          </div>
+          <div class="ed-chips" id="ed-chips"></div>
+          <input type="search" id="ed-cond-search" placeholder="Koşul kartı ekle…" autocomplete="off" />
+          <div class="ed-suggest" id="ed-suggest" hidden></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="panel" id="summary-panel" hidden>
